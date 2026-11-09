@@ -1,0 +1,236 @@
+{
+  "cases": [
+    {
+      "name": "clean_input",
+      "input": "Part 1 database-exported sample, seed 42",
+      "expected_behavior": "Quality passes; selected model produces finite binary classification metrics.",
+      "scoring_criteria": "quality=passed, one holdout call, every scalar metric in [0,1]",
+      "pass_threshold": 1,
+      "observed": {
+        "quality": {
+          "status": "passed",
+          "rows": 2000
+        },
+        "holdout_calls": 1,
+        "metrics": {
+          "precision": 0.024390243902439025,
+          "recall": 0.08333333333333333,
+          "f1": 0.03773584905660377,
+          "accuracy": 0.8725,
+          "confusion_matrix": [
+            [
+              348,
+              40
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          "n_holdout": 400
+        }
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "sealed_holdout",
+      "input": "Same clean input",
+      "expected_behavior": "Threshold uses only validation rows; holdout remains separate and is evaluated once.",
+      "scoring_criteria": "selection_split=validation, overlap=0, validation hash matches partition, holdout_calls=1",
+      "pass_threshold": 1,
+      "observed": {
+        "selection_split": "validation",
+        "selection_rows": 400,
+        "selection_indices_sha256": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+        "holdout_indices_sha256": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb",
+        "overlap_rows": 0
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "exact_duplicate_repair",
+      "input": "Five exact duplicate records appended",
+      "expected_behavior": "Repair once, revalidate, then train on the original row count.",
+      "scoring_criteria": "repair_count=1, quality.rows equals original rows, one holdout evaluation",
+      "pass_threshold": 1,
+      "observed": {
+        "repairs": 1,
+        "quality": {
+          "status": "passed",
+          "rows": 2000
+        },
+        "holdout_calls": 1
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "invalid_labels",
+      "input": "One target label replaced by 2",
+      "expected_behavior": "Reject before training and holdout.",
+      "scoring_criteria": "attempt=0 and holdout_calls=0 and explicit rejection",
+      "pass_threshold": 1,
+      "observed": {
+        "quality": {
+          "status": "rejected",
+          "error": "invalid_binary_labels"
+        },
+        "attempts": 0
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "missing_target",
+      "input": "Target column removed",
+      "expected_behavior": "Reject with missing_target.",
+      "scoring_criteria": "stop_reason=missing_target, no holdout evaluation",
+      "pass_threshold": 1,
+      "observed": "missing_target",
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "leakage_guard",
+      "input": "A fraud_probability column equal to the target is added",
+      "expected_behavior": "Drop label-generation probability and identifier columns before all experiments.",
+      "scoring_criteria": "No fraud_probability or *_id column appears in any trial feature list",
+      "pass_threshold": 1,
+      "observed": {
+        "features": [
+          "amount",
+          "currency",
+          "payment_method",
+          "transaction_type",
+          "merchant_category",
+          "device_type",
+          "operating_system",
+          "browser",
+          "IP_country",
+          "geo_latitude",
+          "geo_longitude",
+          "distance_from_home",
+          "login_duration",
+          "transaction_hour",
+          "day_of_week",
+          "weekend",
+          "international",
+          "failed_login_attempts",
+          "previous_transactions_24h",
+          "average_spending_30d",
+          "spending_change",
+          "merchant_risk",
+          "customer_risk",
+          "age",
+          "gender",
+          "country",
+          "state",
+          "city",
+          "occupation",
+          "annual_income",
+          "credit_score",
+          "customer_since",
+          "account_type",
+          "risk_level",
+          "total_accounts",
+          "avg_monthly_balance",
+          "loan_status"
+        ],
+        "drops": [
+          "transaction_id",
+          "customer_id",
+          "merchant_id",
+          "timestamp",
+          "fraud_probability"
+        ]
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "transient_recovery",
+      "input": "First specialist training attempt raises a controlled RuntimeError",
+      "expected_behavior": "Visit recovery agent once, retry same specialist, and complete.",
+      "scoring_criteria": "retries=1, first trial failed, second succeeded with same family, one holdout",
+      "pass_threshold": 1,
+      "observed": {
+        "retries": 1,
+        "trials": [
+          {
+            "attempt": 1,
+            "family": "linear",
+            "status": "failed"
+          },
+          {
+            "attempt": 2,
+            "family": "linear",
+            "status": "succeeded"
+          },
+          {
+            "attempt": 3,
+            "family": "tree",
+            "status": "succeeded"
+          }
+        ]
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "persistent_failure",
+      "input": "Every training attempt raises a controlled RuntimeError",
+      "expected_behavior": "Stop after the retry limit; do not score an unfitted model.",
+      "scoring_criteria": "two attempts, one retry, training_failed, zero holdout calls",
+      "pass_threshold": 1,
+      "observed": {
+        "attempts": 2,
+        "retries": 1,
+        "stop_reason": "training_failed"
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "attempt_budget",
+      "input": "One-attempt budget, validation target 1.0",
+      "expected_behavior": "Finalize the available model without another experiment.",
+      "scoring_criteria": "attempt=1, exactly one trial, one holdout call",
+      "pass_threshold": 1,
+      "observed": {
+        "attempts": 1,
+        "holdout_calls": 1
+      },
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "specialist_switch",
+      "input": "Clean sample with target validation F1 1.0",
+      "expected_behavior": "Below-target linear model routes to the tree specialist.",
+      "scoring_criteria": "successful trial families are [linear, tree]",
+      "pass_threshold": 1,
+      "observed": [
+        "linear",
+        "tree"
+      ],
+      "score": 1,
+      "passed": true
+    },
+    {
+      "name": "known_signal",
+      "input": "Fixed synthetic fixture: 800 rows, class_sep=2.5, seed 123",
+      "expected_behavior": "Recover a clear predictive signal on sealed holdout.",
+      "scoring_criteria": "holdout F1 >= 0.75",
+      "pass_threshold": 0.75,
+      "observed": {
+        "holdout_f1": 0.8913043478260869
+      },
+      "score": 0.8913043478260869,
+      "passed": true
+    }
+  ],
+  "passed": 11,
+  "total": 11
+}

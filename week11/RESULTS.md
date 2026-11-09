@@ -38,4 +38,4 @@ SQL payment-method analysis on the full table found observed fraud rates of UPI 
 - The dashboard's **Run adapted agents** completed all nodes and saved `dashboard_agent_results.json`; its holdout results agree with the DAG-run output.
 - Four original UI screenshots are included under `outputs/week11/screenshots/`.
 
-No LLM/API calls were made for these runs; the classroom heuristic agents executed within LangGraph. No optional Part 3 baseline comparison/evaluation suite is claimed. Canvas submission is separate from publishing this repository.
+Planning and review used the classroom decision rules within LangGraph. Part 3 comparison and evaluation results are documented separately in [part3/RESULTS.md](part3/RESULTS.md). Canvas submission is separate from publishing this repository.

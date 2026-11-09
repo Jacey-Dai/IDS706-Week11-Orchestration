@@ -1,0 +1,338 @@
+{
+  "dataset_path": "/repo/outputs/week11/20261109T184725/database_cleaned.csv",
+  "seed": 42,
+  "quality": {
+    "status": "passed",
+    "rows": 2000
+  },
+  "repair_count": 0,
+  "attempt": 2,
+  "retries": 0,
+  "trials": [
+    {
+      "attempt": 1,
+      "family": "linear",
+      "status": "succeeded",
+      "validation_metrics": {
+        "precision": 0.044444444444444446,
+        "recall": 0.16666666666666666,
+        "f1": 0.07017543859649122,
+        "accuracy": 0.8675,
+        "confusion_matrix": [
+          [
+            345,
+            43
+          ],
+          [
+            10,
+            2
+          ]
+        ]
+      },
+      "duration_seconds": 0.06863070899999002,
+      "feature_columns": [
+        "amount",
+        "currency",
+        "payment_method",
+        "transaction_type",
+        "merchant_category",
+        "device_type",
+        "operating_system",
+        "browser",
+        "IP_country",
+        "geo_latitude",
+        "geo_longitude",
+        "distance_from_home",
+        "login_duration",
+        "transaction_hour",
+        "day_of_week",
+        "weekend",
+        "international",
+        "failed_login_attempts",
+        "previous_transactions_24h",
+        "average_spending_30d",
+        "spending_change",
+        "merchant_risk",
+        "customer_risk",
+        "age",
+        "gender",
+        "country",
+        "state",
+        "city",
+        "occupation",
+        "annual_income",
+        "credit_score",
+        "customer_since",
+        "account_type",
+        "risk_level",
+        "total_accounts",
+        "avg_monthly_balance",
+        "loan_status"
+      ],
+      "dropped_columns": [
+        "transaction_id",
+        "customer_id",
+        "merchant_id",
+        "timestamp"
+      ]
+    },
+    {
+      "attempt": 2,
+      "family": "tree",
+      "status": "succeeded",
+      "validation_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.97,
+        "confusion_matrix": [
+          [
+            388,
+            0
+          ],
+          [
+            12,
+            0
+          ]
+        ]
+      },
+      "duration_seconds": 0.2088566250004078,
+      "feature_columns": [
+        "amount",
+        "currency",
+        "payment_method",
+        "transaction_type",
+        "merchant_category",
+        "device_type",
+        "operating_system",
+        "browser",
+        "IP_country",
+        "geo_latitude",
+        "geo_longitude",
+        "distance_from_home",
+        "login_duration",
+        "transaction_hour",
+        "day_of_week",
+        "weekend",
+        "international",
+        "failed_login_attempts",
+        "previous_transactions_24h",
+        "average_spending_30d",
+        "spending_change",
+        "merchant_risk",
+        "customer_risk",
+        "age",
+        "gender",
+        "country",
+        "state",
+        "city",
+        "occupation",
+        "annual_income",
+        "credit_score",
+        "customer_since",
+        "account_type",
+        "risk_level",
+        "total_accounts",
+        "avg_monthly_balance",
+        "loan_status"
+      ],
+      "dropped_columns": [
+        "transaction_id",
+        "customer_id",
+        "merchant_id",
+        "timestamp"
+      ]
+    }
+  ],
+  "best": {
+    "attempt": 1,
+    "family": "linear",
+    "status": "succeeded",
+    "validation_metrics": {
+      "precision": 0.044444444444444446,
+      "recall": 0.16666666666666666,
+      "f1": 0.07017543859649122,
+      "accuracy": 0.8675,
+      "confusion_matrix": [
+        [
+          345,
+          43
+        ],
+        [
+          10,
+          2
+        ]
+      ]
+    },
+    "duration_seconds": 0.06863070899999002,
+    "feature_columns": [
+      "amount",
+      "currency",
+      "payment_method",
+      "transaction_type",
+      "merchant_category",
+      "device_type",
+      "operating_system",
+      "browser",
+      "IP_country",
+      "geo_latitude",
+      "geo_longitude",
+      "distance_from_home",
+      "login_duration",
+      "transaction_hour",
+      "day_of_week",
+      "weekend",
+      "international",
+      "failed_login_attempts",
+      "previous_transactions_24h",
+      "average_spending_30d",
+      "spending_change",
+      "merchant_risk",
+      "customer_risk",
+      "age",
+      "gender",
+      "country",
+      "state",
+      "city",
+      "occupation",
+      "annual_income",
+      "credit_score",
+      "customer_since",
+      "account_type",
+      "risk_level",
+      "total_accounts",
+      "avg_monthly_balance",
+      "loan_status"
+    ],
+    "dropped_columns": [
+      "transaction_id",
+      "customer_id",
+      "merchant_id",
+      "timestamp"
+    ]
+  },
+  "threshold": 0.39999999999999997,
+  "threshold_metrics": {
+    "precision": 0.046875,
+    "recall": 0.25,
+    "f1": 0.07894736842105263,
+    "accuracy": 0.825,
+    "confusion_matrix": [
+      [
+        327,
+        61
+      ],
+      [
+        9,
+        3
+      ]
+    ]
+  },
+  "selection_audit": {
+    "selection_split": "validation",
+    "selection_rows": 400,
+    "selection_indices_sha256": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+    "holdout_indices_sha256": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb",
+    "overlap_rows": 0
+  },
+  "holdout_metrics": {
+    "precision": 0.024390243902439025,
+    "recall": 0.08333333333333333,
+    "f1": 0.03773584905660377,
+    "accuracy": 0.8725,
+    "confusion_matrix": [
+      [
+        348,
+        40
+      ],
+      [
+        11,
+        1
+      ]
+    ],
+    "n_holdout": 400
+  },
+  "holdout_calls": 1,
+  "stop_reason": "Experiment budget reached or both specialists evaluated.",
+  "steps": [
+    {
+      "node": "quality_agent",
+      "status": "passed",
+      "rows": 2000,
+      "drops": [
+        "transaction_id",
+        "customer_id",
+        "merchant_id",
+        "timestamp"
+      ]
+    },
+    {
+      "node": "planner_agent",
+      "selected": "linear",
+      "reason": "Start with a scaled, class-balanced linear model."
+    },
+    {
+      "node": "linear_specialist",
+      "status": "succeeded",
+      "attempt": 1,
+      "validation_f1": 0.07017543859649122
+    },
+    {
+      "node": "reviewer_agent",
+      "route": "plan",
+      "reason": "Try the alternative specialist."
+    },
+    {
+      "node": "planner_agent",
+      "selected": "tree",
+      "reason": "Validation F1 is below target; test a nonlinear specialist."
+    },
+    {
+      "node": "tree_specialist",
+      "status": "succeeded",
+      "attempt": 2,
+      "validation_f1": 0.0
+    },
+    {
+      "node": "reviewer_agent",
+      "route": "threshold",
+      "reason": "Experiment budget reached or both specialists evaluated."
+    },
+    {
+      "node": "threshold_agent",
+      "threshold": 0.39999999999999997,
+      "validation_f1": 0.07894736842105263,
+      "selection_split": "validation",
+      "selection_rows": 400,
+      "selection_indices_sha256": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+      "holdout_indices_sha256": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb",
+      "overlap_rows": 0
+    },
+    {
+      "node": "holdout_agent",
+      "status": "completed",
+      "metrics": {
+        "precision": 0.024390243902439025,
+        "recall": 0.08333333333333333,
+        "f1": 0.03773584905660377,
+        "accuracy": 0.8725,
+        "confusion_matrix": [
+          [
+            348,
+            40
+          ],
+          [
+            11,
+            1
+          ]
+        ]
+      }
+    }
+  ],
+  "split_fingerprints": {
+    "train": "f6d29d0929a10fa3172e8e9a37fbde69060a1572944eb8a6575641b8002951b1",
+    "validation": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+    "holdout": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb"
+  },
+  "duration_seconds": 0.41209024999989197
+}

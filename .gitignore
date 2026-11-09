@@ -55,3 +55,7 @@ outputs/week11/*/*.csv
 # Local submission copies and archives
 outputs/Week11_Fraud_Pipeline_Submission/
 outputs/*.zip
+
+# Keep the compact Part 3 comparison tables
+!outputs/week11/part3/comparison*.csv
+outputs/week11/part3/fixtures/

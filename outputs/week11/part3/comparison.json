@@ -1,0 +1,275 @@
+[
+  {
+    "workflow": "Fixed Airflow baseline",
+    "seed": 42,
+    "attempts": 1,
+    "retries": 0,
+    "duration_seconds": 1.0016440839990537,
+    "validation_f1": 0.06862745098039216,
+    "holdout_metrics": {
+      "precision": 0.032432432432432434,
+      "recall": 0.5,
+      "confusion_matrix": [
+        [
+          209,
+          179
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "f1": 0.06091370558375635,
+      "accuracy": 0.5375,
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "f6d29d0929a10fa3172e8e9a37fbde69060a1572944eb8a6575641b8002951b1",
+      "validation": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+      "holdout": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb"
+    }
+  },
+  {
+    "workflow": "Classroom simple agents",
+    "seed": 42,
+    "attempts": 3,
+    "retries": 0,
+    "duration_seconds": 0.6674190009998711,
+    "validation_f1": 0.05714285714285714,
+    "holdout_metrics": {
+      "precision": 0.031413612565445025,
+      "recall": 0.5,
+      "confusion_matrix": [
+        [
+          203,
+          185
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "f1": 0.059113300492610835,
+      "accuracy": 0.5225,
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "f6d29d0929a10fa3172e8e9a37fbde69060a1572944eb8a6575641b8002951b1",
+      "validation": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+      "holdout": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb"
+    }
+  },
+  {
+    "workflow": "Adaptive specialists",
+    "seed": 42,
+    "attempts": 2,
+    "retries": 0,
+    "duration_seconds": 0.3782603340005153,
+    "validation_f1": 0.07894736842105263,
+    "holdout_metrics": {
+      "precision": 0.024390243902439025,
+      "recall": 0.08333333333333333,
+      "f1": 0.03773584905660377,
+      "accuracy": 0.8725,
+      "confusion_matrix": [
+        [
+          348,
+          40
+        ],
+        [
+          11,
+          1
+        ]
+      ],
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "f6d29d0929a10fa3172e8e9a37fbde69060a1572944eb8a6575641b8002951b1",
+      "validation": "8f515f153a440645d4ff7c0936e8f56ea3fe1e5e603b3fe6bd73bec1533c9fb4",
+      "holdout": "1ec6c93a66b0027ad15850439e4e5b70d43dcc2bb3818b9264a11c58e18b7fbb"
+    },
+    "threshold": 0.39999999999999997
+  },
+  {
+    "workflow": "Fixed Airflow baseline",
+    "seed": 43,
+    "attempts": 1,
+    "retries": 0,
+    "duration_seconds": 2.358139792999282,
+    "validation_f1": 0.041237113402061855,
+    "holdout_metrics": {
+      "precision": 0.02564102564102564,
+      "recall": 0.4166666666666667,
+      "confusion_matrix": [
+        [
+          198,
+          190
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "f1": 0.04830917874396135,
+      "accuracy": 0.5075,
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "0381ffd41652831422b20f03d29a730d45ced77c2300471ea75725ae276e9155",
+      "validation": "e9e254873b90ead0cf8fd6a038b4856cc0f8a109ee6b2a20cc8cb6e5a0577738",
+      "holdout": "5a941b9259a8f61de0a0262fc11d773e1581cd13a21284d03ecfcfea13f9dbde"
+    }
+  },
+  {
+    "workflow": "Classroom simple agents",
+    "seed": 43,
+    "attempts": 3,
+    "retries": 0,
+    "duration_seconds": 1.8827063759999874,
+    "validation_f1": 0.05025125628140704,
+    "holdout_metrics": {
+      "precision": 0.024271844660194174,
+      "recall": 0.4166666666666667,
+      "confusion_matrix": [
+        [
+          187,
+          201
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "f1": 0.045871559633027525,
+      "accuracy": 0.48,
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "0381ffd41652831422b20f03d29a730d45ced77c2300471ea75725ae276e9155",
+      "validation": "e9e254873b90ead0cf8fd6a038b4856cc0f8a109ee6b2a20cc8cb6e5a0577738",
+      "holdout": "5a941b9259a8f61de0a0262fc11d773e1581cd13a21284d03ecfcfea13f9dbde"
+    }
+  },
+  {
+    "workflow": "Adaptive specialists",
+    "seed": 43,
+    "attempts": 2,
+    "retries": 0,
+    "duration_seconds": 0.5490787509988877,
+    "validation_f1": 0.05555555555555555,
+    "holdout_metrics": {
+      "precision": 0.039735099337748346,
+      "recall": 0.5,
+      "f1": 0.0736196319018405,
+      "accuracy": 0.6225,
+      "confusion_matrix": [
+        [
+          243,
+          145
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "0381ffd41652831422b20f03d29a730d45ced77c2300471ea75725ae276e9155",
+      "validation": "e9e254873b90ead0cf8fd6a038b4856cc0f8a109ee6b2a20cc8cb6e5a0577738",
+      "holdout": "5a941b9259a8f61de0a0262fc11d773e1581cd13a21284d03ecfcfea13f9dbde"
+    },
+    "threshold": 0.15
+  },
+  {
+    "workflow": "Fixed Airflow baseline",
+    "seed": 44,
+    "attempts": 1,
+    "retries": 0,
+    "duration_seconds": 2.198888917999284,
+    "validation_f1": 0.06030150753768844,
+    "holdout_metrics": {
+      "precision": 0.016574585635359115,
+      "recall": 0.25,
+      "confusion_matrix": [
+        [
+          210,
+          178
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "f1": 0.031088082901554404,
+      "accuracy": 0.5325,
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "cabf328fe6d82a919c114929d45847c2050b5e13942eb20c0594bd3e7cea945c",
+      "validation": "5527194bb89ffee7fe65f7e5524d87975b69391b89677d6f1de078489fc51db4",
+      "holdout": "76a4ec499a37c3e1a654eed27163627d67916546f3bd198d9c4ac978e5369a6a"
+    }
+  },
+  {
+    "workflow": "Classroom simple agents",
+    "seed": 44,
+    "attempts": 3,
+    "retries": 0,
+    "duration_seconds": 1.1890395840000565,
+    "validation_f1": 0.06829268292682927,
+    "holdout_metrics": {
+      "precision": 0.022222222222222223,
+      "recall": 0.3333333333333333,
+      "confusion_matrix": [
+        [
+          212,
+          176
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "f1": 0.041666666666666664,
+      "accuracy": 0.54,
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "cabf328fe6d82a919c114929d45847c2050b5e13942eb20c0594bd3e7cea945c",
+      "validation": "5527194bb89ffee7fe65f7e5524d87975b69391b89677d6f1de078489fc51db4",
+      "holdout": "76a4ec499a37c3e1a654eed27163627d67916546f3bd198d9c4ac978e5369a6a"
+    }
+  },
+  {
+    "workflow": "Adaptive specialists",
+    "seed": 44,
+    "attempts": 2,
+    "retries": 0,
+    "duration_seconds": 0.576953957999649,
+    "validation_f1": 0.052980132450331126,
+    "holdout_metrics": {
+      "precision": 0.0223463687150838,
+      "recall": 0.3333333333333333,
+      "f1": 0.041884816753926704,
+      "accuracy": 0.5425,
+      "confusion_matrix": [
+        [
+          213,
+          175
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "n_holdout": 400
+    },
+    "split_fingerprints": {
+      "train": "cabf328fe6d82a919c114929d45847c2050b5e13942eb20c0594bd3e7cea945c",
+      "validation": "5527194bb89ffee7fe65f7e5524d87975b69391b89677d6f1de078489fc51db4",
+      "holdout": "76a4ec499a37c3e1a654eed27163627d67916546f3bd198d9c4ac978e5369a6a"
+    },
+    "threshold": 0.1
+  }
+]

@@ -9,4 +9,4 @@ docker compose -f week11/compose.yml exec scheduler python -m student_loop.run_c
 docker compose -f week11/compose.yml exec scheduler python -m week11.run_agents
 ```
 
-The shared training/LLM helpers live in [loop_runtime.py](../loop_runtime.py). The verified assignment runs explicitly disable paid or external LLM calls.
+The shared training/LLM helpers live in [loop_runtime.py](../loop_runtime.py). The verified runs use the classroom planning and review rules.

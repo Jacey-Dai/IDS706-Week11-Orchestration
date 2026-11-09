@@ -1,6 +1,6 @@
 # Week 11: Orchestrated fraud detection
 
-This submission adapts the in-class AutoML Research Lab for the required Part 1 and Part 2. Optional Part 3 is outside this submission. All new assignment files live in `week11/`, the DAG in `airflow/dags/week11_fraud_pipeline.py`, and the modified agents in `student_loop/graph.py`.
+This submission adapts the in-class AutoML Research Lab for the required Part 1 and Part 2. Part 3 extends this workflow with adaptive experiment coordination and an evaluation suite; see [Part 3](part3/README.md). All new assignment files live in `week11/`, the DAG in `airflow/dags/week11_fraud_pipeline.py`, and the modified agents in `student_loop/graph.py`.
 
 ## Run
 
@@ -23,7 +23,7 @@ docker compose -f week11/compose.yml exec scheduler airflow dags list-import-err
 docker compose -f week11/compose.yml down
 ```
 
-Ports bind to localhost. Development credentials are for this local assignment. No paid API or LLM key is required: agents use the classroom deterministic fallback. This is a LangGraph workflow with distinct agent responsibilities, not evidence of a live LLM call.
+Ports bind to localhost. Development credentials are for this local assignment. Planning and review follow the classroom decision rules. The LangGraph nodes have distinct responsibilities and share experiment history through state.
 
 ## Data and transformations
 

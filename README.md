@@ -1,6 +1,6 @@
 # Week 11: Fraud Detection with Airflow and LangGraph
 
-**Author:** Jacey Dai · IDS 706 · Part 1 and Part 2
+**Author:** Jacey Dai · IDS 706 · Parts 1–3
 
 An end-to-end data pipeline cleans two related tables in parallel, merges them into PostgreSQL, reads the stored data for analysis, and runs an adapted agent-based machine learning loop. This project extends the [in-class AutoML Research Lab](https://github.com/Kedar-V/automl-research-lab); the original classroom instructions are preserved in [README.classroom.md](README.classroom.md).
 
@@ -18,7 +18,7 @@ An end-to-end data pipeline cleans two related tables in parallel, merges them i
 
 ## Run both workflows
 
-Prerequisites: Git and a running Docker Desktop with Docker Compose. No host Airflow, Python environment, API key, or paid LLM service is needed. Ports 8088 and 8501 must be available.
+Prerequisites: Git and a running Docker Desktop with Docker Compose. Everything runs inside Docker; no host Python or Airflow installation is required. Ports 8088 and 8501 must be available.
 
 ```bash
 git clone https://github.com/Jacey-Dai/IDS706-Week11-Orchestration.git
@@ -77,7 +77,7 @@ flowchart LR
  J -->|accept or stop| E[holdout_eval]
 ```
 
-The judge selects using validation F1, with a maximum of three experiments. A stratified split reserves 20% for holdout; the other 80% splits into 60% training and 20% validation. Preprocessing fits on training data. The best validation configuration refits on development data and evaluates the holdout once per workflow execution. These verified runs use the classroom **deterministic heuristic agents within LangGraph**, with LLM calls explicitly disabled.
+The judge selects using validation F1, with a maximum of three experiments. A stratified split reserves 20% for holdout; the other 80% splits into 60% training and 20% validation. Preprocessing fits on training data. The best validation configuration refits on development data and evaluates the holdout once per workflow execution. The verified runs use deterministic rules for planning and review within LangGraph.
 
 ## Key findings
 
@@ -110,4 +110,29 @@ Observed full-table fraud rates ranged from 2.57% for Debit Card to 3.83% for UP
 
 ![Holdout precision, recall, F1, accuracy and validation experiments](outputs/week11/screenshots/04_model_evaluation.jpg)
 
-Run-level JSON evidence is stored in [outputs/week11/20261109T184725](outputs/week11/20261109T184725). Generated cleaned CSVs can be reproduced by running the DAG. Optional Part 3 bonus work is not included.
+Run-level JSON evidence is stored in [outputs/week11/20261109T184725](outputs/week11/20261109T184725). Generated cleaned CSVs can be reproduced by running the DAG. Part 3 adds adaptive routing, failure recovery, and a comparison with two classroom baselines; see the section below.
+
+
+## Part 3: Adaptive research and evaluation
+
+The [adaptive graph](week11/part3/graph.py) assigns separate responsibilities to quality checking, duplicate repair, experiment planning, linear and tree specialists, review, recovery, threshold selection, and holdout evaluation. Conditional edges select the next agent using data quality, training status, validation F1, and remaining budgets. The topology is compiled once; the executed path changes with intermediate results.
+
+- Exact duplicates route through repair and revalidation. Invalid labels stop before training.
+- Below-target linear results route to a tree specialist. A training error routes through recovery and retries the same specialist, at most once by default.
+- Training attempts are capped at three. The selected model's decision threshold uses validation labels only; holdout is evaluated once at the end of each execution.
+
+Run the evaluation suite and comparison after Part 1:
+
+```bash
+docker compose -f week11/compose.yml exec scheduler python -m week11.part3.evaluate
+```
+
+In the [dashboard](http://localhost:8501), select **Adaptive Research** in the sidebar. Run clean-data and transient-failure scenarios, inspect the graph and trace, and view the baseline comparison and case results. [Part 3 methods and findings](week11/part3/README.md) document every test's input, expected behavior, scoring criteria, and pass threshold.
+
+**Evaluation:** 11/11 cases passed. Across seeds 42, 43, and 44, mean holdout F1 was 0.0511 for adaptive specialists, 0.0489 for classroom simple agents, and 0.0468 for the fixed Airflow model. Adaptive recall was lower, and the F1 differences were small relative to variation across splits. The result supports bounded routing and recovery behavior; predictive performance remains weak. [Detailed comparison](week11/part3/RESULTS.md).
+
+![Adaptive graph after recovering from a controlled training failure](outputs/week11/part3/screenshots/01_adaptive_graph.jpg)
+
+![Three-workflow comparison and evaluation cases](outputs/week11/part3/screenshots/02_evaluation.jpg)
+
+![Evaluation cases and pass thresholds](outputs/week11/part3/screenshots/03_cases.jpg)
