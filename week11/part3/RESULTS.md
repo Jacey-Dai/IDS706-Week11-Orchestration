@@ -22,7 +22,7 @@ Means over three split seeds; F1 variation is the sample standard deviation acro
 
 All workflows received the same sample and partition indices within each seed. The timing covers training, selection, and final scoring only; it excludes scheduler startup, ingestion, and database transfer. The fixed Airflow baseline runs its analysis task's modeling procedure directly; the simple-agent baseline runs the classroom `mini_loop` graph.
 
-The adaptive mean F1 was slightly higher, but the difference was small compared with variation across splits. Its average recall was lower than both baselines. Seed 42 illustrates the trade-off: the adaptive model's holdout F1 was 0.0377, below the fixed model's 0.0476 and simple agents' 0.0591. The adaptive procedure is therefore not uniformly better. Overall fraud prediction remains weak on this sample.
+The adaptive mean F1 was slightly higher, but the difference was small compared with variation across splits. Its average recall was lower than both baselines. Seed 42 illustrates the trade-off: the adaptive model's holdout F1 was 0.0377, below the fixed model's 0.0609 and simple agents' 0.0591. The adaptive procedure is therefore not uniformly better. Overall fraud prediction remains weak on this sample.
 
 | Seed | Workflow | Holdout F1 | Holdout recall |
 | --- | --- | --- | --- |
