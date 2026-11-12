@@ -1,0 +1,73 @@
+{
+  "rows": 731,
+  "train": 438,
+  "validation": 146,
+  "holdout": 147,
+  "fixed": {
+    "selected": "calendar",
+    "holdout_mae": 1134.5497811697305
+  },
+  "simple": {
+    "selected": "weather",
+    "validation_mae": {
+      "calendar": 973.5233614950153,
+      "weather": 924.4235153941913
+    },
+    "holdout_mae": 880.2242454760203,
+    "retried": false
+  },
+  "adaptive": {
+    "selected": "weather",
+    "validation_mae": {
+      "calendar": 973.5233614950153,
+      "weather": 924.4235153941913,
+      "forest": 1862.1345367084882
+    },
+    "holdout_mae": 880.2242454760203,
+    "retried": false
+  },
+  "recovery": {
+    "selected": "weather",
+    "validation_mae": {
+      "calendar": 973.5233614950153,
+      "weather": 924.4235153941913,
+      "forest": 1862.1345367084882
+    },
+    "holdout_mae": 880.2242454760203,
+    "retried": true
+  },
+  "cases": [
+    {
+      "input": "Chronological joined daily records",
+      "expected": "Finite holdout score and weather model evaluated",
+      "criterion": "Holdout MAE is finite and nonnegative, weather trial recorded",
+      "threshold": 1,
+      "score": 1,
+      "passed": true
+    },
+    {
+      "input": "Controlled first weather training failure",
+      "expected": "One recovery and same final MAE",
+      "criterion": "Retry flag set and final MAE matches clean run",
+      "threshold": 1,
+      "score": 1,
+      "passed": true
+    },
+    {
+      "input": "Calendar MAE 100, weather MAE 95",
+      "expected": "Evaluate forest specialist next",
+      "criterion": "Reviewer routes back to planner",
+      "threshold": 1,
+      "score": 1,
+      "passed": true
+    },
+    {
+      "input": "Training error after recovery already attempted",
+      "expected": "Stop instead of retrying again",
+      "criterion": "Reviewer chooses stop",
+      "threshold": 1,
+      "score": 1,
+      "passed": true
+    }
+  ]
+}
