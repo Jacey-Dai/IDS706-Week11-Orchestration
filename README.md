@@ -2,7 +2,7 @@
 
 Jacey Dai · IDS 706 · Parts 1–3
 
-Can airport weather measurements improve daily rental estimates over a calendar-only model? This project joins Capital Bikeshare counts with NOAA weather and tests the models on the final five months of the sample. The analysis uses observed weather from each day, so it measures retrospective demand estimation. A forecast would require weather information available before the rental day.
+Can airport weather measurements improve daily rental estimates over a calendar-only model? This project joins Capital Bikeshare counts with NOAA weather and tests the models on the final 147 days of the sample. The analysis uses observed weather from each day, so it measures retrospective demand estimation. A forecast would require weather information available before the rental day.
 
 ## Run the project
 
@@ -42,14 +42,14 @@ The reviewer tries a random forest when adding weather improves validation MAE b
 | Simple classroom-style agent baseline | Try calendar ridge and weather ridge, then select by validation MAE | 880.2 |
 | Adaptive workflow | Add a forest trial when the weather ridge gain falls short, with one retry available | 880.2 |
 
-Both agent workflows selected weather ridge and reduced holdout MAE by **22.4%** compared with the calendar-only model. The extra forest trial had higher validation error and was discarded. The adaptive workflow matched the simple loop's holdout error and successfully recovered from the simulated error. These numbers come from one historical split.
+Both agent workflows selected weather ridge and reduced holdout MAE by **22.4%** compared with the calendar-only model. Weather ridge improved validation MAE by 5.0%, below the 10% threshold, so the adaptive loop also tried a random forest. Its validation MAE was higher, so the loop kept ridge. The adaptive workflow matched the simple loop's holdout error and successfully recovered from the simulated error. These results come from one chronological split. The fixed baseline uses a predefined model, and the simple agent baseline applies the classroom loop structure to this regression task.
 
 ## Execution evidence
 
 - [Successful Airflow execution](bikeshare/results/01_airflow_success.jpg)
 - [Airflow DAG graph](bikeshare/results/02_dag_graph.jpg)
 - [Live agent graph and trace](bikeshare/results/03_live_graph.jpg)
-- [Model evaluation and test cases](bikeshare/results/04_model_evaluation.jpg)
+- [Holdout model evaluation](bikeshare/results/04_model_evaluation.jpg)
 - [SQL wet/dry summary](bikeshare/results/weather_summary.csv)
 - [Full evaluation results](bikeshare/results/evaluation.json)
 
